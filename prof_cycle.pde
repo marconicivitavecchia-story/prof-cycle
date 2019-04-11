@@ -4,8 +4,13 @@ class Pianta {
   float dimensione;
 
   Pianta() {
-    dimensione = random(22, 122);
-    forma = createShape(SPHERE, dimensione);
+    dimensione = random(30, 80);
+    //forma = createShape(SPHERE, dimensione);
+    forma = loadShape("albero.obj");
+    forma.scale(dimensione);
+    forma.rotateX(radians(180));
+    forma.rotateY(radians(random(-45,45)));
+    
     forma.setFill(#28C61E);
     x = random(0, width);
     y = random(0, height);
@@ -21,8 +26,8 @@ void setup() {
   fullScreen(P3D);
   noStroke();
   
-  querce = new Pianta[20];
-  for(int index = 0; index < 20; index++){
+  querce = new Pianta[100];
+  for(int index = 0; index < 100; index++){
     querce[index] = new Pianta();
   }
 }

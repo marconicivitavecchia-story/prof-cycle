@@ -1,56 +1,35 @@
-//Pianta albero;
-
-static int numeroPiante = 10;
-Pianta[] listaPiante = new Pianta[numeroPiante];
-
 class Pianta {
   PShape forma;
   float x, y;
   float dimensione;
-  
-  Pianta(float x, float y, float dimensione) {
-    
-    // Use createShape
-    forma = createShape(SPHERE,dimensione);
-    
-    // OR loadShape
-    //forma = loadShape("albero.obj");
-    //forma.scale(dimensione/2);
-    //forma.rotateX(radians(180));
-    //forma.rotateY(radians(random(0,360)));
-    
-    
-    forma.setFill(#2FA010);
-    this.x = x;
-    this.y = y;
+
+  Pianta() {
+    dimensione = random(22, 122);
+    forma = createShape(SPHERE, dimensione);
+    forma.setFill(#28C61E);
+    x = random(0, width);
+    y = random(0, height);
   }
-  
-  void disegna() {
-    shape(forma,x,y);
+  void semina() {
+    shape(forma, x, y);
   }
 }
+
+Pianta[] querce;
 
 void setup() {
   fullScreen(P3D);
   noStroke();
   
-  for (int index = 0; index < numeroPiante; index++) {
-    listaPiante[index] = new Pianta(random(0,width),random(0,height), random(20,50));
+  querce = new Pianta[20];
+  for(int index = 0; index < 20; index++){
+    querce[index] = new Pianta();
   }
-  //listaPiante[0] = new Pianta(random(0,width),random(0,height), 20);
-  //listaPiante[1] = new Pianta(random(0,width),random(0,height), 30);
-  //listaPiante[2] = new Pianta(random(0,width),random(0,height), 50);
-  
 }
-
 void draw() {
   background(#00FF00);
   lights();
-  for (Pianta p: listaPiante) {
-    p.disegna();  
+  for (Pianta q: querce) {
+    q.semina();
   }
-  //listaPiante[0].disegna();
-  //listaPiante[1].disegna();
-  //listaPiante[2].disegna();
-  
 }
